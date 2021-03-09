@@ -6,7 +6,7 @@ import DataTable from "../../components/dataTable/index";
 
 export default function Home({ history }) {
   const Auth = useContext(AuthContext);
-  const [itemValue, setItemValue] = useState("");
+  const [itemValue, setItemValue] = useState("Test");
 
   // console.log(Auth.categories);
 

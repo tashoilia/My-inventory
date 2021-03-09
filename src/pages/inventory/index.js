@@ -73,10 +73,12 @@ export default class Inventory extends React.Component {
     const { inventoryData } = this.state;
     // function findIndex base on Table rowKey props and should always be a right array index
     const key = inventoryData.findIndex(
-      (x) => x.key === restProps["data-row-key"]
+      (x) => {
+        return x.index === restProps["data-row-key"]
+      }
     );
-    console.log(key, restProps["data-row-key"]);
-    return <SortableItem key={key} {...restProps} />;
+
+    return <SortableItem index={key} {...restProps} />;
   };
 
   addToInventory = () => {
@@ -88,9 +90,9 @@ export default class Inventory extends React.Component {
       key: this.state.inventoryData.length,
       name: this.state.name,
       status: "pending",
+      index: this.state.inventoryData.length,
     });
     this.setState({ inventoryData: [...newInventoryData] });
-    console.log(newInventoryData);
   };
 
   onSelect = (data) => {

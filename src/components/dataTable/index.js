@@ -84,14 +84,14 @@ export default function DataTable({ itemValue }) {
     if (itemValue.length == 0) {
       return;
     }
-    let newRowData = rowData.slice();
-    let newId = rowData.length === 0 ? 0 : rowData[rowData.length - 1].id + 1;
+    let newRowData = [...rowData];
+    let newId = rowData.length;
     let newRow = { item: itemValue, id: newId, quantity: 35000 };
     newRowData.push(newRow);
+    console.log(newRowData)
     setRowData(newRowData);
   };
 
-  console.log(itemValue);
   return (
     <>
       <Button
