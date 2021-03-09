@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { createBrowserHistory } from "history";
+import "./App.css";
+import Home from "./pages/home";
+import Inventory from "./pages/inventory";
+import { AuthConsumer } from "./context/index";
+import DragSortingTable from "./pages/DragSortingTable/index";
 
+const history = createBrowserHistory();
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      <AuthConsumer>
+        {() => {
+          return (
+            <Switch>
+              <Route path="/test" component={DragSortingTable} />
+              <Route path="/inventory" component={Inventory} />
+              <Route path="/" component={Home} />
+            </Switch>
+          );
+        }}
+      </AuthConsumer>
+    </Router>
   );
 }
 
